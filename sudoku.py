@@ -44,7 +44,52 @@ class Solution:
     def solve_sudoku(self, board: List[List[str]]) -> None:
         """Do not return anything, modify board in-place instead."""
         self.search(board)
-        pprint(board)
+        self.show(board)
+
+    def show(self, board) -> None:
+        """Print out the solved board."""
+
+        top = "┌───┬───┬───┐"
+        mid = "├───┼───┼───┤"
+        bot = "└───┴───┴───┘"
+
+        grid = [
+            [top],
+            [self.build_a_row(board[0])],
+            [self.build_a_row(board[1])],
+            [self.build_a_row(board[2])],
+            [mid],
+            [self.build_a_row(board[3])],
+            [self.build_a_row(board[4])],
+            [self.build_a_row(board[5])],
+            [mid],
+            [self.build_a_row(board[6])],
+            [self.build_a_row(board[7])],
+            [self.build_a_row(board[8])],
+            [bot],
+        ]
+        for row in grid:
+            print(row[0])
+
+    def build_a_row(self, row: str) -> str:
+        """Turn a row of numbers into a printable string."""
+        row_char = "│"
+        new_row = (
+            row_char
+            + row[0]
+            + row[1]
+            + row[2]
+            + row_char
+            + row[3]
+            + row[4]
+            + row[5]
+            + row_char
+            + row[6]
+            + row[7]
+            + row[8]
+            + row_char
+        )
+        return new_row
 
     def is_valid_state(self, board) -> bool:
         """Check if it is a valid solution."""
@@ -164,7 +209,7 @@ def main(files: list[str]) -> int:
     count = len(sys.argv)
     if count > 1:
         for i in range(1, count):
-            print(f"Solving Sudoku file: {sys.argv[i]}")
+            print(f"\nSolving Sudoku file: {sys.argv[i]}")
             board = sudoku_load(sys.argv[i])
             solver = Solution()
             solver.solve_sudoku(board)
@@ -172,7 +217,7 @@ def main(files: list[str]) -> int:
         solver = Solution()
         solver.solve_sudoku(BOARD)
 
-    print("Sudoku Solver Run Complete")
+    print("\nSudoku Solver Run Complete")
     return 0
 
 
