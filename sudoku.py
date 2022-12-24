@@ -3,7 +3,6 @@
 import sys
 from typing import List
 from itertools import product
-from pprint import pprint
 
 """
 A default board can be added like this.
@@ -48,7 +47,6 @@ class Solution:
 
     def show(self, board) -> None:
         """Print out the solved board."""
-
         top = "┌───┬───┬───┐"
         mid = "├───┼───┼───┤"
         bot = "└───┴───┴───┘"
@@ -214,6 +212,7 @@ def main(files: list[str]) -> int:
             solver = Solution()
             solver.solve_sudoku(board)
     else:
+        print("\nSolving Built-in Sudoku board")
         solver = Solution()
         solver.solve_sudoku(BOARD)
 
